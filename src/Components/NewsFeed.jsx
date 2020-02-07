@@ -65,7 +65,7 @@ class NewsFeed extends React.Component {
 
     componentDidMount = async () => {
        
-        await loadWithThunk()
+        await this.props.loadNews()
 
        
     }
