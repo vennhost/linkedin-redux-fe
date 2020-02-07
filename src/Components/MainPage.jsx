@@ -25,7 +25,7 @@ class MainPage extends React.Component {
             <>
             <Router>
             <NavBar />
-            <Container>
+            {/* <Container>
                 <Row>
                         {this.state.profile?
                             // <About aboutUs={this.state.profile.bio}></About>
@@ -37,7 +37,7 @@ class MainPage extends React.Component {
                             </> :<h2>This profile is loading</h2>
                         }</Row>
             </Container>
-
+ */}
             {/* with react-router-dom
             you should create some routes  like:
             - newsfeed

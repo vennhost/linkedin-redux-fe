@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: lightgray;
 }
 
 code {
@@ -122,14 +123,27 @@ code {
 }
 
 
-
+/* 
 .profile {
   padding-top: 40px;
-}
+} */
 
 img.profile-photo{
-  margin-top: -63px;
-  height:200px;
+  /* margin-top: -63px; */
+  /* height:200px; */
+  
+  
+  width: 72px;
+  height: 72px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  border: 1px solid transparent;
+  border-radius: 49.9%;
+
+  border: 2px solid #fff;
+  box-shadow: inset 0 1.5px 3px 0 rgba(0,0,0,.15), 0 1.5px 3px 0 rgba(0,0,0,.15);
+  margin: -38px auto 12px;
+  background-color: #fff;
 }
 
 .logo {
@@ -178,3 +192,33 @@ img.profile-photo{
   height: 50px;
 }
 
+.home-container {
+  padding-top: 50px;
+}
+
+.post-div {
+  background: whitesmoke;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.post-input {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.home-profile {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: whitesmoke;
+}
+
+.side-bar {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: whitesmoke;
+}
+
+.profile-name {
+  text-align: center;
+}
+
+.job-title {
+  text-align: center;
+}

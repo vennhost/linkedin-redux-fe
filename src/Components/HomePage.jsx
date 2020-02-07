@@ -1,6 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import NewsFeed from './NewsFeed'
+import NewsFeed from './NewsFeed';
+import ProfileBox from './ProfileBox';
+import '../index.css';
+import SideBar from './SideBar';
 
 
 class HomePage extends React.Component {
@@ -9,12 +12,12 @@ class HomePage extends React.Component {
         return (
 
 
-            <Container>
+            <Container className="home-container">
 
                 <Row>
-                    <Col xs="1" sm="4">.col-6 .col-sm-4</Col>
-                    <Col xs="7" sm="4"><NewsFeed /></Col>
-                    <Col xs="4" sm="4">.col-sm-4</Col>
+                    <Col xs="4" sm="3"><ProfileBox  /></Col>
+                    <Col xs="4" sm="5"><NewsFeed /></Col>
+                    <Col xs="4" sm="4"> <SideBar /> </Col>
                 </Row>
 
             </Container>

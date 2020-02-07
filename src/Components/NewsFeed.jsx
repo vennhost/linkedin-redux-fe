@@ -1,78 +1,90 @@
 import React from 'react';
-import {Toast, ToastHeader, ToastBody, Input, Button} from 'reactstrap';
+import { Input, Button, Row, Col } from 'reactstrap';
 import ProfileHeading from './ProfileHeading';
 import '../index.css'
-import PostStatus from './PostApi'
+import PostStatus from './PostApi';
+import Post from "./NewsPost";
+import { connect } from "react-redux"
 
 
+const mapStateToProps = state => state;
 
-class NewsFeed extends React.Component {
-    state = { 
-        posts: [],
-        currentPost: ""
-     }
+const mapDispatchToProps = dispatch => ({
+    loadNews: posts => dispatch(loadWithThunk(posts))
+})
 
-     /* handleNewPost = async () => {
-        let posts = {
-            "text": this.state.currentPost
-        };
-        await this.PostStatus(posts)
-        
-     } */
-
-    render() { 
-        return ( 
-            <>
-                <div className="bg info">
-                    <Input type="text" value={this.state.currentPost} onChange={(val) => this.setState({currentPost: val.target.value})} placeholder="Start a post" id="post" />
-                    <Button id="share" onClick={() => PostStatus(this.state.currentPost)} className="btn btn-outline-info btn-sm">Share Now</Button>
-                </div>
-                <div>
-                    {this.state.posts.map((post, index) => 
-                        <div key={index} className="p-3 bg-info my-2 rounded">
-                            <Toast>
-                            <ToastHeader icon="info">
-                                {post.username}
-                            </ToastHeader>
-                            <ToastBody>
-                               {post.text}
-                            </ToastBody>
-                            </Toast>
-                        </div>
-                        )}
-                </div>
-            </>
-            );
-    }
-
-   
-    componentDidMount=async ()=>{
-        let response=await fetch("https://striveschool.herokuapp.com/api/posts/",{
-            headers:{
-                "Authorization":"basic dXNlcjIwOlkyY0paMzhVUE1tblBkQVc="
+const loadWithThunk = posts => {
+    return async (dispatch, getState) => {
+        let response = await fetch("https://striveschool.herokuapp.com/api/posts/", {
+            headers: {
+                "Authorization": "basic dXNlcjIwOlkyY0paMzhVUE1tblBkQVc="
             }
         })
         let posts = await response.json()
-        this.setState({
-            posts: posts
+            
+        dispatch({
+            type: "LOAD_POST",
+            payload: posts
         })
+    }
+}
+
+class NewsFeed extends React.Component {
+    state = {
+        posts: [],
+        currentPost: ""
+    }
+
+    /* handleNewPost = async () => {
+       let posts = {
+           "text": this.state.currentPost
+       };
+       await this.PostStatus(posts)
+       
+    } */
+
+    render() {
+        return (
+            <>
+                <div className="bg info post-input">
+                <Col>
+                    <Row><Input type="text" value={this.state.currentPost} onChange={(val) => this.setState({ currentPost: val.target.value })} placeholder="Start a post" id="post" /></Row>
+                    <Row><Button id="share" onClick={() => PostStatus(this.state.currentPost)} className="btn btn-outline-info btn-sm">Post</Button></Row>
+                </Col>
+                
+                    </div>
+                <div>
+
+                    <Post />
+
+                </div>
+            </>
+        );
     }
 
 
-   postStatus = async (posts) => {
-        let response=await fetch("https://striveschool.herokuapp.com/api/posts/",{
-            headers:{
-                "Authorization":"basic dXNlcjIwOlkyY0paMzhVUE1tblBkQVc=",
+    componentDidMount = async () => {
+       
+        await loadWithThunk()
+
+       
+    }
+
+
+    postStatus = async (posts) => {
+        let response = await fetch("https://striveschool.herokuapp.com/api/posts/", {
+            headers: {
+                "Authorization": "basic dXNlcjIwOlkyY0paMzhVUE1tblBkQVc=",
                 "content-type": "application/json"
             },
             method: "POST",
             body: JSON.stringify(posts)
-           
+
         })
         if (response.ok) {
             return await response.json()
         }
     }
 }
- 
-export default NewsFeed;
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsFeed);
