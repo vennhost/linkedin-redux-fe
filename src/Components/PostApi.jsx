@@ -9,6 +9,8 @@ const PostStatus = async (posts) => {
         body: JSON.stringify(posts)
        
     })
+
+    console.log(response.json())
     if (response.ok) {
         return await response.json()
     }
