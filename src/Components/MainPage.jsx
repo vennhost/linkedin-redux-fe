@@ -9,7 +9,8 @@ import Profile from './Profile';
 import Banner from './Banner';
 import Experience from './Experience';
 import HomePage from './HomePage'
-import ProfilePage from './ProfilePage'
+import ProfilePage from './ProfilePage';
+import Login from './Login'
 import ProfileModal from "./ProfileModal";
 import {Button,Row,Col} from "reactstrap"
 import { MdEdit } from "react-icons/md";
@@ -48,7 +49,8 @@ class MainPage extends React.Component {
             sot that if profile/user5, will the get info from user5 etc*/}
             
                 <Container>
-                    <Route path="/" exact component={HomePage} />
+                    <Route path="/" exact component={Login} />
+                    <Route path="/profile" component={HomePage} />
                     <Route path="/profile" component={ProfilePage} />
                 </Container>
             </Router>
